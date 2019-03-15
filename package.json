@@ -1,0 +1,44 @@
+{
+  "name": "eleventypub",
+  "description": "eleventy project that outputs EPUB",
+  "tags": [
+    "eleventy",
+    "11ty",
+    "ssr",
+    "static",
+    "epub",
+    "template",
+    "eprdctn"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marisademeglio/eleventypub.git"
+  },
+  "version": "0.1.0",
+  "scripts": {
+    "prebuild": "node prebuild.js",
+    "build": "eleventy",
+    "postbuild": "node postbuild.js",
+    "pretty": "gulp pretty",
+    "epubcheck": "java -jar $npm_package_config_epubcheck --mode exp build/epub",
+    "save": "java -jar $npm_package_config_epubcheck --mode exp --save build/epub",
+    "ace": "ace --force --outdir build/report build/epub",
+    "all": "npm-run-all build pretty save ace"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy": "^0.7.1",
+    "del": "^4.0.0",
+    "fs": "0.0.1-security",
+    "gulp": "^4.0.0",
+    "gulp-pretty-data": "^0.1.2",
+    "markdown-it-imsize": "^2.0.1",
+    "mime": "^2.4.0",
+    "node-dir": "^0.1.17",
+    "prettier": "^1.16.4",
+    "recursive-readdir": "^2.2.2"
+  },
+  "config": {
+    "epubcheck": "/Users/marisa/Downloads/epubcheck-4.2.0-beta/epubcheck.jar"
+  }
+}

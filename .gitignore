@@ -74,3 +74,6 @@ typings/
 
 # FuseBox cache
 .fusebox/
+.DS_Store
+build
+src/_data/resources.json

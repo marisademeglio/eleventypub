@@ -1,0 +1,13 @@
+{
+  "cover": {
+    "page": "cover/index.xhtml",
+    "src": "resources/images/under-construction.jpg",
+    "alt": "Cartoon bear with construction tools"
+  },
+  "toc": {
+    "page": "toc/index.xhtml"
+  },
+  "readingOrder": [
+    "intro", "chapter1", "end"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "dc": {
+    "title": "eleventypub-demo",
+    "creator": "Marisa DeMeglio",
+    "description": "This EPUB was made with 11ty",
+    "identifier": "com.github.marisademeglio.eleventypub-demo",
+    "language": "en",
+    "rights": "This work is licensed under a Creative Commons Attribution-Share Alike (CC BY-SA) license."
+  },
+  "links": [
+    {
+      "rel": "cc:license",
+      "href": "http://creativecommons.org/licenses/by-sa/3.0/"
+    }
+  ],
+  "properties": {
+    "dcterms:modified": "2019-03-13T00:00:00Z",
+    "schema:accessibilityFeature": "alternativeText",
+    "schema:accessibilityFeature": "readingOrder",
+    "schema:accessibilityFeature": "structuralNavigation",
+    "schema:accessibilityFeature": "tableOfContents",
+    "schema:accessibilitySummary": "The publication has been evaluated for accessibility.",
+    "schema:accessibilityHazard": "none",
+    "schema:accessMode": "textual",
+    "schema:accessMode": "visual",
+    "schema:accessModeSufficient": "textual",
+    "schema:accessibilityControl": "fullKeyboardControl",
+    "schema:accessibilityControl": "fullMouseControl"
+  }
+}

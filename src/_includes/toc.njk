@@ -1,0 +1,34 @@
+{% extends 'base.njk' %}
+
+{% block head %}
+<title>{{ title }}</title>
+{% endblock %}
+
+{% block content %}
+<section id="toc">
+   <h1>{{title}}</h1>
+   <nav epub:type="toc">
+      {% if auto == false %}
+        {{ content | safe}}
+      {% else %}
+      <ol>
+        {# use the reading order, if specified #}
+        {% if pub.readingOrder -%}
+          {% for item in pub.readingOrder -%}
+            {% for page in collections.pages -%}
+              {% if page.fileSlug == item -%}
+                <li><a href="{{EPUBRoot}}{{page.url}}index.xhtml">{{page.data.title}}</a></li>
+              {%- endif %}
+            {%- endfor %}
+          {%- endfor %}
+        {% else %}
+          {% for page in collections.pages -%}
+          <li><a href="{{EPUBRoot}}{{page.url}}index.xhtml">{{page.data.title}}</a></li>
+          {%- endfor %}
+        {% endif %}
+      </ol>
+      {% endif %}
+
+   </nav>
+</section>
+{% endblock %}
