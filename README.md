@@ -22,7 +22,7 @@ In the terminal:
 
 Your EPUB fileset is in `build/epub`.
 
-If you do what it says under [Configure Tools](#configure-tools) and then you can run:
+If you do what it says under [Configure Tools](#configure-tools), you can run:
 
     $ npm run all
 
