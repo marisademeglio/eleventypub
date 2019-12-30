@@ -1,6 +1,6 @@
 # eleventypub
 
-This is an [11ty](https://11ty.io) project, configured to build an EPUB 3 fileset. It includes options to validate and run accessibility checks.
+This is an [11ty](https://11ty.io) project template, configured to build an EPUB 3 fileset. It includes options to validate and run accessibility checks.
 
 ## Quickstart
 First, install [11ty](https://11ty.io).
