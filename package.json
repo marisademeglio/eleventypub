@@ -39,6 +39,6 @@
     "recursive-readdir": "^2.2.2"
   },
   "config": {
-    "epubcheck": "/Users/marisa/Downloads/epubcheck-4.2.0-beta/epubcheck.jar"
+    "epubcheck": "/Users/marisa/Downloads/epubcheck-4.2.0-rc/epubcheck.jar"
   }
 }

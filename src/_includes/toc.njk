@@ -10,7 +10,7 @@
    <nav epub:type="toc">
       {% if auto == false %}
         {{ content | safe}}
-      {% else %}
+      {% else -%}
       <ol>
         {# use the reading order, if specified #}
         {% if pub.readingOrder -%}
@@ -21,13 +21,13 @@
               {%- endif %}
             {%- endfor %}
           {%- endfor %}
-        {% else %}
+        {% else -%}
           {% for page in collections.pages -%}
-          <li><a href="{{EPUBRoot}}{{page.url}}index.xhtml">{{page.data.title}}</a></li>
+            <li><a href="{{EPUBRoot}}{{page.url}}index.xhtml">{{page.data.title}}</a></li>
           {%- endfor %}
-        {% endif %}
+        {%- endif %}
       </ol>
-      {% endif %}
+      {%- endif %}
 
    </nav>
 </section>
