@@ -25,7 +25,7 @@
     "save": "java -jar ./lib/epubcheck-4.2.2/epubcheck.jar --mode exp --save build/epub",
     "rename": "node rename.js",
     "ace": "./node_modules/.bin/ace --force --outdir build/report build/epub",
-    "all": "./node_modules/.bin/npm-run-all build gulp save ace",
+    "all": "./node_modules/.bin/npm-run-all build gulp save ace rename",
     "all-no-stylelint": "./node_modules/.bin/npm-run-all build pretty-xml save ace rename"
   },
   "license": "MIT",
