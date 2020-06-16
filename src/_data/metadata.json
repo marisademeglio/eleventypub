@@ -15,16 +15,11 @@
   ],
   "properties": {
     "dcterms:modified": "2019-03-13T00:00:00Z",
-    "schema:accessibilityFeature": "alternativeText",
-    "schema:accessibilityFeature": "readingOrder",
-    "schema:accessibilityFeature": "structuralNavigation",
-    "schema:accessibilityFeature": "tableOfContents",
+    "schema:accessibilityFeature": ["alternativeText", "readingOrder","structuralNavigation", "tableOfContents"],
     "schema:accessibilitySummary": "The publication has been evaluated for accessibility.",
     "schema:accessibilityHazard": "none",
-    "schema:accessMode": "textual",
-    "schema:accessMode": "visual",
+    "schema:accessMode": ["textual","visual"],
     "schema:accessModeSufficient": "textual",
-    "schema:accessibilityControl": "fullKeyboardControl",
-    "schema:accessibilityControl": "fullMouseControl"
+    "schema:accessibilityControl": ["fullKeyboardControl", "fullMouseControl"]
   }
 }

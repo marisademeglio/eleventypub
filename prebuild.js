@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const recursive = require("recursive-readdir");
 const dir = require('node-dir');
 const del = require('del');
 
@@ -15,6 +14,8 @@ let data = dir.files(RESOURCES_DIR, {sync: true})
   .map(file => file.replace(REL_TO, ''));
 
 (async () => {
-    const deletedPaths = await del([BUILD_DIR, SAVE_TO]);
+    // delete the build target directory and the resources list
+    await del([BUILD_DIR, SAVE_TO]);
+    // create a new resources list
     fs.writeFileSync(SAVE_TO, JSON.stringify(data))
 })();

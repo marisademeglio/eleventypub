@@ -14,8 +14,14 @@
     {%- endfor %}
 
     {% for property, value in metadata.properties -%}
-    <meta property="{{property}}">{{value}}</meta>
-
+      {# metadata could be an array of values #}
+      {% if value | isArray %}
+        {% for v in value %}
+        <meta property="{{property}}">{{v}}</meta>
+        {% endfor %}  
+      {% else %}
+      <meta property="{{property}}">{{value}}</meta>
+      {% endif %}
     {%- endfor %}
   </metadata>
   <manifest>

@@ -17,28 +17,33 @@
   "version": "0.1.0",
   "scripts": {
     "prebuild": "node prebuild.js",
-    "build": "eleventy",
+    "build": "./node_modules/.bin/eleventy build",
     "postbuild": "node postbuild.js",
-    "pretty": "gulp pretty",
-    "epubcheck": "java -jar $npm_package_config_epubcheck --mode exp build/epub",
-    "save": "java -jar $npm_package_config_epubcheck --mode exp --save build/epub",
-    "ace": "ace --force --outdir build/report build/epub",
-    "all": "npm-run-all build pretty save ace"
+    "gulp": "./node_modules/.bin/gulp",
+    "pretty-xml": "./node_modules/.bin/gulp xml",
+    "epubcheck": "java -jar ./lib/epubcheck-4.2.2/epubcheck.jar --mode exp build/epub",
+    "save": "java -jar ./lib/epubcheck-4.2.2/epubcheck.jar --mode exp --save build/epub",
+    "rename": "node rename.js",
+    "ace": "./node_modules/.bin/ace --force --outdir build/report build/epub",
+    "all": "./node_modules/.bin/npm-run-all build gulp save ace",
+    "all-no-stylelint": "./node_modules/.bin/npm-run-all build pretty-xml save ace rename"
   },
   "license": "MIT",
   "dependencies": {
     "@11ty/eleventy": "^0.9.0",
+    "@daisy/ace": "^1.1.1",
     "del": "^4.0.0",
     "fs": "0.0.1-security",
     "gulp": "^4.0.0",
     "gulp-pretty-data": "^0.1.2",
+    "gulp-stylelint": "^13.0.0",
     "markdown-it-imsize": "^2.0.1",
     "mime": "^2.4.0",
     "node-dir": "^0.1.17",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.16.4",
-    "recursive-readdir": "^2.2.2"
-  },
-  "config": {
-    "epubcheck": "/Users/marisa/Downloads/epubcheck-4.2.0-rc/epubcheck.jar"
+    "sanitize-filename": "^1.6.3",
+    "stylelint": "^13.6.0",
+    "stylelint-config-recommended": "^3.0.0"
   }
 }

@@ -1,74 +1,81 @@
 # eleventypub
 
-This is an [11ty](https://11ty.io) project template, configured to build an EPUB 3 fileset. It includes options to validate and run accessibility checks.
+This is an [11ty](https://11ty.io) project template, configured to build an [EPUB 3](https://w3c.github.io/publ-epub-revision/epub32/spec/epub-spec.html) fileset. It also validates with [EPUBCheck](https://github.com/w3c/epubcheck) and run accessibility checks with [Ace](https://daisy.github.io/ace).
 
 ## Quickstart
-First, install [11ty](https://11ty.io).
-
-Then, clone this repo and start editing:
+Clone this repo and start editing:
 
     $ git clone https://github.com/marisademeglio/eleventypub.git
     $ cd eleventypub
     $ npm install
 
-Go to `src/pages`. Edit the pages there or make your own, following the examples.
+### Edit your files
+All the files you will be editing are in the `src` directory.
 
-Go to `src/cover.md` and make a cover page.
+1. Create your EPUB's pages as markdown files in `src/pages`.
+2. Create a cover page and save as `src/cover.md`.
+3. Edit the metadata in `_data/metadata.json`.
+4. List the pages in order in `src/pub.json` by listing the file slugs, e.g. 
 
+```
+"readingOrder": [
+    "intro", "chapter1", "end"
+  ]
+```
+
+### Build your EPUB
 In the terminal:
-
-    $ npm run build
-
-Your EPUB fileset is in `build/epub`.
-
-To build, validate, save, and run accessibility checks, all from one command, do what it says under [Configure Tools](#configure-tools), and run:
 
     $ npm run all
 
-This command builds, validates with [EPUBCheck](https://github.com/w3c/epubcheck), runs [Ace](https://daisy.github.io/ace), and saves an `.epub` file, and an Ace report.
+The following output is created:
 
-## Configure Tools
+1. `build/epub`: the expanded EPUB fileset
+2. `build/<title>.epub`: the EPUB file itself
+3. `build/report`: an [Ace](https://daisy.github.io/ace) report about accessibility
 
-These third party tools enable saving as `.epub`, validating, and performing accessibility checks.
-
-- Download and unzip [EPUBCheck](https://github.com/w3c/epubcheck)
-- Install [Ace by DAISY](https://daisy.github.io/ace).
-- Install [npm-run-all](https://www.npmjs.com/package/npm-run-all)
-
-After you've unzipped EPUBCheck, set the path to your EPUBCheck jar in [`package.json`](https://github.com/marisademeglio/eleventypub/blob/5af185071780aa650ea79939b671177e1db3591f/package.json#L41-L43).
+You will see any [EPUBCheck](https://github.com/w3c/epubcheck) validation issues in the terminal.
 
 ## Conventions
 
-This part of the README assumes you are familiar with [11ty](https://11ty.io). It discusses project structure and options.
+This part assumes you are familiar with [11ty](https://11ty.io). It discusses project structure and options.
 
-You have as much freedom as you have with 11ty to mix and match templates and options. It's up to you to make sure the files pass EPUB 3 validation ([configure some free tools](#configure-tools) so you can run the validation step).
+You have as much freedom as you have with 11ty to mix and match templates and options. It's up to you to make sure the files pass EPUB 3 validation.
 
-This project uses the following conventions:
+This project uses the following fileset conventions:
 
-### `pages/`
+### `src/pages/`
 Chapter files live in this directory.
 
-In `pages.json`, it says, among other things:
+In the pages-wide configuration file, `pages.json`, it says, among other things:
 
     `tags: pages`
 
 Don't change this.
 
-### `index.md`
-The package document. Don't touch this file.
+### `src/index.md`
+This becomes the package document. Don't touch this file.
 
-### `toc.md`
+### `src/toc.md`
 Table of contents. The filename isn't special, just reference it correctly from `pub.json` and use a TOC template (in this case, `toc.njk`).
 
-### `cover.md`
+### `src/cover.md`
 Cover. The filename isn't special, just reference it correctly from `pub.json`.
 
-### `_data/`
+### `src/_data/`
 This data ends up in the package document.
-  - `metadata.json`: as many `dc` terms, `properties`, and `links` as you want.
-  - `pub.json`: `toc`, `cover`, and `readingOrder`_(optional)_
+  - `metadata.json`: as many `dc` terms, `properties`, and `links` as you want. Use arrays for metadata properties that should appear more than once, e.g. 
+  ```
+  "schema:accessibilityFeature": ["alternativeText", "readingOrder"]
+  ```
+  will create this in `package.opf`:
+  ```
+  <meta property="schema:accessibilityFeature">alternativeText</meta>
+  <meta property="schema:accessibilityFeature">readingOrder</meta>      
+  ```
+  - `pub.json`: Says which files are the `toc` and `cover`, and lists the `readingOrder`
 
-### `resources/`
+### `src/resources/`
 This directory is for fonts, CSS, images, etc; basically, anything you want listed in the manifest and copied over.
 
 ### `_includes`
@@ -78,13 +85,17 @@ These are all the layout templates, which create XHTML, OPF, and navigation docu
 
     $ npm run [something from the list below]
 
+- `all`: build, prettify, validate+save, and check accessibility
+- `all-no-stylelint`: same as the above, but without running stylelint on the CSS
+
+You may want to run just a single step of the larger process, for which you can use these commands:
+
 - `build`: create the EPUB fileset
 - `epubcheck`: run EPUBCheck on the output
 - `save`: run EPUBCheck and if valid, save an EPUB file
 - `ace`: run the Ace accessibility checker. The report will be in `build/report`
-- `pretty`: run an XML-prettifier on `package.opf` and all `xhtml` files.
-- `all`: build, prettify, validate+save, and check accessibility
 
+    
 ## FAQ
 
 ### Can I use other formats for my templates?
@@ -93,15 +104,15 @@ Yes absolutely! You can do whatever's possible with [11ty](https://11ty.io), whi
 
 The templates in this project are nunjucks and markdown. The configuration I use for markdown includes having it [output XHTML](https://github.com/marisademeglio/eleventypub/blob/5af185071780aa650ea79939b671177e1db3591f/.eleventy.js#L22). Then, in the `postbuild` step, all `html` files are [renamed to `xhtml`](https://github.com/marisademeglio/eleventypub/blob/5af185071780aa650ea79939b671177e1db3591f/postbuild.js#L16). Even so, there are surely still ways to produce EPUB-invalid XHTML with this setup.
 
-So, whatever you try, it's up to you to make sure that your output is valid. Be sure to [configure your tools](#configure-tools) so you can run EPUBCheck.
+So, whatever you try, it's up to you to make sure that your output is valid.
 
 ### What are the TOC options?
 
-Point to your TOC file from `pub.json`. Point to the final output, e.g. `toc/index.html`, not the input.
+Reference your TOC file from `pub.json`. Use the name of the output file, e.g. `toc/index.html`, not the source `toc.md`.
 
-In this basic example, the TOC is the file generated by [`src/toc.md`](https://github.com/marisademeglio/eleventypub/blob/master/src/toc.md). It is set to autogenerate, so the file is empty after the front matter data.
+In this basic example, the TOC is the file generated by [`src/toc.md`](https://github.com/marisademeglio/eleventypub/blob/master/src/toc.md). Because it is set to autogenerate, the file is intentionally empty after the front matter data.
 
-If I wanted to specify a TOC manually, I would write something like:
+If I wanted to write a TOC manually, I would write something like:
 
 ```
 ---
@@ -127,13 +138,3 @@ You can add a `readingOrder` in `pub.json`. It's an array of [fileSlugs](https:/
 
 All file slugs in a custom reading order have to be for files in `pages/`.
 
-## Future
-
-There's lots of room for expansion. Some ideas could be:
-
-- Fine tune TOC autogeneration with some options
-- Have more TOC templates, for example something with a pagelist.
-- Add media overlays (based on what input I'm not sure, maybe some kind of timestamp list)
-- more robust build process
-  - the XHTML-ification is spread out in a few different places)
-  - no control over where files get output (get 11ty's default behavior, e.g. for `chapter1.md`, to output `chapter1/index.html`)
