@@ -1,5 +1,9 @@
 # eleventypub
 
+Create an EPUB by authoring your pages as simple [markdown](https://www.markdownguide.org/basic-syntax/) files and then letting a script do the rest. 
+
+(Note that you could also use XHTML or templates -- see the [FAQ](#faq).)
+
 This is an [11ty](https://11ty.io) project template, configured to build an [EPUB 3](https://w3c.github.io/publ-epub-revision/epub32/spec/epub-spec.html) fileset. It also validates with [EPUBCheck](https://github.com/w3c/epubcheck) and run accessibility checks with [Ace](https://daisy.github.io/ace).
 
 ## Quickstart
