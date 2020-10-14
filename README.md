@@ -7,12 +7,19 @@ Create an EPUB by authoring your pages as simple [markdown](https://www.markdown
 This is an [11ty](https://11ty.io) project template, configured to build an [EPUB 3](https://w3c.github.io/publ-epub-revision/epub32/spec/epub-spec.html) fileset. It also validates with [EPUBCheck](https://github.com/w3c/epubcheck) and runs accessibility checks with [Ace](https://daisy.github.io/ace).
 
 ## Quickstart
+Make sure you have already installed a reasonably recent version of [nodejs](https://nodejs.org). 
+Then, to follow the instructions below, install npx: 
+```
+$ npm install -g npx
+```
+
 Clone this repo and start editing:
-
-    $ git clone https://github.com/marisademeglio/eleventypub.git
-    $ cd eleventypub
-    $ npm install
-
+```
+$ mkdir my-epub-project
+$ npx degit marisademeglio/eleventypub
+$ cd my-epub-project
+$ npm install
+```
 ### Edit your files
 All the files you will be editing are in the `src` directory.
 
@@ -25,11 +32,14 @@ title: Chapter One
 ---
 # Chapter One
 
-"Laborum culpa mollit id," she thought. "Do eu cillum eu magna? Dolor voluptate laborum reprehenderit esse labore occaecat."
+"Laborum culpa mollit id," she thought. "Do eu cillum eu magna? 
+Dolor voluptate laborum reprehenderit esse labore occaecat."
 
-Consectetur id ad sit excepteur commodo id pariatur ipsum voluptate et do pariatur. Et id nisi enim veniam ea non in dolor. Elit eu pariatur magna veniam consectetur sit deserunt excepteur.
+Consectetur id ad sit excepteur commodo id pariatur ipsum voluptate 
+et do pariatur. Et id nisi enim veniam ea non in dolor. Elit eu 
+pariatur magna veniam consectetur sit deserunt excepteur.
 
-"Hey! Non ullamco proident!."
+"Hey! Non ullamco proident!"
 ```
 
 #### 2. Edit the metadata in `src/_data/metadata.json`.
@@ -87,12 +97,14 @@ You have as much freedom as you have with 11ty to mix and match templates and op
 
 This project uses the following fileset conventions:
 
-### `src/pages/`
+### `src/pages`
 Chapter files live in this directory.
 
 In the pages-wide configuration file, `pages.json`, it says, among other things:
 
-    `tags: pages`
+```
+tags: pages
+```
 
 Don't change this.
 
@@ -105,8 +117,8 @@ Table of contents. The filename isn't special, just reference the output correct
 ### `src/cover.md`
 Cover. The filename isn't special, just reference the output correctly from `pub.json`.
 
-### `src/_data/`
-This data ends up in the package document.
+### `src/_data`
+The data in this directory ends up in the package document.
   - `metadata.json`: as many `dc` terms, `properties`, and `links` as you want. Use arrays for metadata properties that should appear more than once, e.g. 
   ```
   "schema:accessibilityFeature": ["alternativeText", "readingOrder"]
@@ -118,11 +130,11 @@ This data ends up in the package document.
   ```
   - `pub.json`: Says which files are the `toc` and `cover`, describes the cover image, and lists the `readingOrder`
 
-### `src/resources/`
+### `src/resources`
 This directory is for fonts, CSS, images, etc; basically, anything you want listed in the manifest and copied over.
 
 ### `_includes`
-These are all the layout templates, which create XHTML, OPF, and navigation documents. You can edit and replace these with your own, using any markup syntax supported by [11ty](https://11ty.io). If you use your own templates, it's up to you to make sure you're producing valid EPUB 3 output.
+This directory is for all the layout templates, which create XHTML, OPF, and navigation documents. You can edit and replace these with your own, using any markup syntax supported by [11ty](https://11ty.io). If you use your own templates, it's up to you to make sure you're producing valid EPUB 3 output.
 
 ## Scripts
 
@@ -133,10 +145,10 @@ These are all the layout templates, which create XHTML, OPF, and navigation docu
 
 You may want to run just a single step of the larger process, for which you can use these commands:
 
-- `build`: create the EPUB fileset
-- `epubcheck`: run EPUBCheck on the output
-- `save`: run EPUBCheck and if valid, save an EPUB file
-- `ace`: run the Ace accessibility checker. The report will be in `build/report`
+- `build`: create the EPUB fileset in `build/epub`
+- `epubcheck`: run EPUBCheck on the output in `build/epub`
+- `save`: run EPUBCheck on `build/epub` and if valid, save an EPUB file as `build/<title>.epub`
+- `ace`: run the Ace accessibility checker on the files in `build/epub`. The report will be in `build/report`
 
     
 ## FAQ
