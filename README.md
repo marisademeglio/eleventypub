@@ -8,10 +8,6 @@ This is an [11ty](https://11ty.io) project template, configured to build an [EPU
 
 ## Quickstart
 Make sure you have already installed a reasonably recent version of [nodejs](https://nodejs.org). 
-Then, to follow the instructions below, install npx: 
-```
-$ npm install -g npx
-```
 
 Clone this repo and start editing:
 ```
