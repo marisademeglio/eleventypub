@@ -89,7 +89,7 @@ You will see any [EPUBCheck](https://github.com/w3c/epubcheck) validation issues
 
 This part assumes you are familiar with [11ty](https://11ty.io). It discusses project structure and options.
 
-You have as much freedom as you have with 11ty to mix and match templates and options. It's up to you to make sure the files pass EPUB 3 validation.
+You have as much freedom as you have with 11ty to mix and match templates and options. It's up to you to make sure the resulting output passes EPUB 3 validation.
 
 This project uses the following fileset conventions:
 
