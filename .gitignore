@@ -77,3 +77,4 @@ typings/
 .DS_Store
 build
 src/_data/resources.json
+.vscode
