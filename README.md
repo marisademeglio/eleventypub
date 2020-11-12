@@ -107,6 +107,14 @@ scripted: true
 ...
 ```
 
+Also note that the gulp plugin `gulp-pretty-data` that is automatically included as part of the `npm run all` build process does not like `CDATA`, often used in XHTML script blocks. So, you can just take it out of the command chain by editing `package.json` and removing `pretty-xml` from the list:
+
+```
+...
+"all": "./node_modules/.bin/npm-run-all build save ace rename",
+...
+```
+
 ## Conventions
 
 This part assumes you are familiar with [11ty](https://11ty.io). It discusses project structure and options.
