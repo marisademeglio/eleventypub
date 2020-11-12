@@ -39,7 +39,8 @@
     <item id="toc" properties="nav" href="{{pub.toc.page}}" media-type="application/xhtml+xml"/>
 
     {% for page in collections.pages -%}
-    <item id="page{{loop.index}}" href=".{{page.url}}index.xhtml" media-type="application/xhtml+xml"/>
+    <item id="page{{loop.index}}" href=".{{page.url}}index.xhtml" media-type="application/xhtml+xml"
+    {% if  page.data.scripted -%}properties="scripted"{%- endif -%} />
     {%- endfor %}
   </manifest>
   <spine>

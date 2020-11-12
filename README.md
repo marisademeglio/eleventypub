@@ -85,6 +85,28 @@ The following output is created:
 
 You will see any [EPUBCheck](https://github.com/w3c/epubcheck) validation issues in the terminal.
 
+## Advanced
+
+If your page has scripting in it, add `scripted` to the block of front-matter data, e.g. 
+```
+---
+scripted: true
+title: Chapter One
+---
+```
+
+to make sure it gets noted as such in the package document.
+
+If your page template (e.g. `page.njk`) has scripting, you can put the `scripted` property there instead, in the same kind of block, e.g. 
+
+```
+---
+scripted: true
+---
+{% extends 'base.njk' %}
+...
+```
+
 ## Conventions
 
 This part assumes you are familiar with [11ty](https://11ty.io). It discusses project structure and options.
