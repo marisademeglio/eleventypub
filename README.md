@@ -11,9 +11,8 @@ Make sure you have already installed a reasonably recent version of [nodejs](htt
 
 Clone this repo and start editing:
 ```
-$ mkdir my-epub-project
+$ mkdir my-epub-project && cd my-epub-project
 $ npx degit marisademeglio/eleventypub
-$ cd my-epub-project
 $ npm install
 ```
 ### Edit your files
